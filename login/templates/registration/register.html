@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.body{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #34495e;
+}
+.reg{
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #e0eee2;
+  text-align: center;
+}
+.head{
+text-align: center;
+color: rgb(38, 0, 255);
+padding-top: 30px;
+}
+    </style>
+</head>
+<body>
+    <h2 class="head">Register Here.....</h2>
+
+<form class="reg" method="POST">{% csrf_token %}
+<div class="form-group">
+{{form.as_p}}
+
+
+<button class="btn btn-warning">Register</button>
+</div>
+
+</body>
+</html>

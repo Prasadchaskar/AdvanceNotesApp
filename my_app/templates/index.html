@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-muted">Notes Are In The Form like PDF,Text etc</h2>
+<h1>Pdf Notes</h1>
+        <article class="media content-section">
+         
+          <div class="media-body">
+            <div class="article-metadata">
+              {% for document in documents %}
+              
+              
+              <a class="mr-2" href="{% url 'show_notes' %}">{{document.description}}</a>
+            </div>
+            {% endfor %}
+          </div>
+        </article>
+        
+            <article class="media content-section">
+              <h1>Text Notes</h1>
+              <div class="media-body">
+            <div class="article-metadata">
+              {% for txt in text_notes %}
+                
+              <a class="mr-2" ">{{txt.title}}</a>
+              <h3 class="text-muted">{{txt.description}}</h3>
+              <textarea id="" cols="30" rows="10">{{txt.text}}</textarea>
+            </div>
+            {% endfor %}
+            </div> 
+          </article>
+{% endblock content %}
