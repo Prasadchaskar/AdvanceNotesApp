@@ -1,31 +1,63 @@
 {% extends "base.html" %}
+<style></style>
 {% block content %}
-<h2 class="text-muted">Notes Are In The Form like PDF,Text etc</h2>
-<h1>Pdf Notes</h1>
-        <article class="media content-section">
-         
-          <div class="media-body">
-            <div class="article-metadata">
-              {% for document in documents %}
-              
-              
-              <a class="mr-2" href="{% url 'show_notes' %}">{{document.description}}</a>
-            </div>
-            {% endfor %}
-          </div>
-        </article>
-        
-            <article class="media content-section">
-              <h1>Text Notes</h1>
-              <div class="media-body">
-            <div class="article-metadata">
-              {% for txt in text_notes %}
-                
-              <a class="mr-2" ">{{txt.title}}</a>
-              <h3 class="text-muted">{{txt.description}}</h3>
-              <textarea id="" cols="30" rows="10">{{txt.text}}</textarea>
-            </div>
-            {% endfor %}
-            </div> 
-          </article>
+<h2 class="text-muted">Notes Are In The Form like PDF,Text etc</h2><br>
+<h2 class="text-muted">If You Have Doubt Feel Free To Ask &#128512;</h2>
+<h1 class="header-fixed">Pdf Notes</h1>
+<article class="media content-section">
+
+  <div class="media-body">
+    <div class="article-metadata">
+      {% for document in documents %}
+
+
+      <a class="mr-2" href="{% url 'show_notes' %}">{{document.description}}</a>
+    </div>
+    {% endfor %}
+  </div>
+</article>
+
+<article class="media content-section">
+  <h1 class="header-fixed">Text Notes</h1>
+  <div class="media-body">
+    <div class="article-metadata">
+      {% for txt in text_notes %}
+
+      <a class="mr-2" ">{{txt.title}}</a>
+              <h3 class=" text-muted">{{txt.description}}</h3>
+        <textarea id="" cols="30" rows="10">{{txt.text}}</textarea>
+    </div>
+    {% endfor %}
+  </div>
+</article>
+<h1 class="header-fixed">Questions:</h1>
+{% for q in quest %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{q.title}}</h5>
+    <p class="card-text">{{q.question}}</p>
+    <p id="count">0</p>
+    <a href="#" id="like">Like</a>
+    <a href="{% url 'comment' %}" class="card-link">Comment</a>
+  </div>
+  {% for c in comm %}
+  <li>
+    <p class="card-text">{{c.comment}}-By {{c.name}}</p>
+  </li>
+  {% endfor %}
+</div>
+{% endfor %}
+
+<script>
+  let btn_id = document.getElementById('like')
+  let count = document.getElementById('count')
+  let cnt = 0
+  function count_likes() {
+    cnt += 1
+    count.innerHTML = cnt
+  }
+
+  btn_id.addEventListener('click', count_likes)
+
+</script>
 {% endblock content %}
